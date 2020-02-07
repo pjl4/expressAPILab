@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+	console.log(req.body);
 	Gif.create(req.body)
 		.then((gif) => {
 			res.redirect('/');
