@@ -5,7 +5,8 @@ const seedData = require('./seeds.json');
 Gif.remove({})
 	.then(() => {
 		console.log('inserting data');
-		Gif.collection.insert(seedData);
+		console.log('Seed data', seedData);
+		Gif.collection.insertMany(seedData);
 	})
 	.then(() => {
 		process.exit();
