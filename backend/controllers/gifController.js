@@ -11,26 +11,31 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-	console.log(req.body);
 	Gif.create(req.body)
 		.then((gif) => {
-			res.redirect('/');
+			Gif.find({}).then((gifs) => {
+				res.json(gifs);
+			});
 		})
 		.catch(console.error);
 });
-router.put('/:id', (req, res) => {
-	Gif.findByIdAndUpdate(req.params.id)
+router.put('/:id/', (req, res) => {
+	Gif.findByIdAndUpdate(req.params.id, req.body)
 		.then((gif) => {
-			res.redirect('/');
+			Gif.find({}).then((gifs) => {
+				res.json(gifs);
+			});
 		})
-		.catch(consle.error);
+		.catch(console.error);
 });
-router.delete('/:id', (req, res) => {
+router.delete('/:id/', (req, res) => {
 	Gif.findByIdAndDelete(req.params.id)
 		.then((gif) => {
-			res.redirect('/');
+			Gif.find({}).then((gifs) => {
+				res.json(gifs);
+			});
 		})
-		.catch(consle.error);
+		.catch(console.error);
 });
 
 module.exports = router;
